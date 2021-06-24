@@ -29,6 +29,8 @@ namespace VideoCompare
 
 
         DrawPanel DrawPanelWindow = new DrawPanel();
+        ZoomControl ZoomControlWindow = new ZoomControl();
+        OptionMenu OptionMenuWindow = new OptionMenu();
         bool IsDrawing = false;
         public bool fullscreen;
         int TimeScaler = 1;
@@ -37,6 +39,8 @@ namespace VideoCompare
         
         int EndValue1;
         int EndValue2;
+
+        int Video1PauseStatus = 0;
 
         int Line_index;
 
@@ -48,6 +52,8 @@ namespace VideoCompare
 
         bool Video1Load = false;
         bool Video2Load = false;
+
+        System.Windows.Forms.OpenFileDialog ofd1;
         public MainWindow()
         {
             InitializeComponent();
@@ -155,11 +161,11 @@ namespace VideoCompare
 
         private void btnLoad1_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
+            ofd1 = new System.Windows.Forms.OpenFileDialog();
             Me1.LoadedBehavior = MediaState.Manual;
-            if(ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if(ofd1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                Me1.Source = new Uri(ofd.FileName);
+                Me1.Source = new Uri(ofd1.FileName);
                
             }
             btnPlay1.IsEnabled = true;
@@ -169,27 +175,87 @@ namespace VideoCompare
             
         }
 
+        private void btnResume_Click(object sender, RoutedEventArgs e)
+        {
+            Me1.LoadedBehavior = MediaState.Play;
+        
+        }
         private void btnPlay1_Click(object sender, RoutedEventArgs e)
         {
-          
-            if (EnableStart_V1.IsChecked == true)
+            string LocalValue;
+            int LocalValue2;
+            if (btnPlay1.IsEnabled == true)
             {
-                Me1.Position = TimeSpan.FromSeconds(Convert.ToInt32(StartSec1.Text));
+
+                Me1.Source = new Uri(ofd1.FileName);
+
+                Me1.SpeedRatio = Convert.ToDouble(PlaySpeed1.Text);            
+            }
+          
+            if (OptionMenuWindow.View1StartSecond.IsChecked == true )
+            {
+             //   Me1.Position = TimeSpan.FromSeconds(Convert.ToInt32(StartSec1.Text));
+                Me1.Position = TimeSpan.FromSeconds(Convert.ToInt32(OptionMenuWindow.View1_StartSecondTime.Text));
 
             }
             else
             { 
                 /* Do nothing */
             }
-    
-            Me1.SpeedRatio = Convert.ToDouble(PlaySpeed1.Text);
-           
-            Me1.Play();
+
+            if (OptionMenuWindow.View_1_EnableLoop.IsChecked == true)
+            {
+                LocalValue = OptionMenuWindow.ListBox1.Items[0].ToString();
+                LocalValue2 = Convert.ToInt32(Double.Parse(LocalValue));
+                Me1.Position = TimeSpan.FromSeconds(LocalValue2);
+              
+            
+            }
+
+            if (btnPlay1.IsEnabled == true)
+            {
+
+
+                Me1.LoadedBehavior = MediaState.Play; 
+
+            
+            
+            }
+
         }
 
         private void btnPause1_Click(object sender, RoutedEventArgs e)
         {
-            Me1.Pause();
+            
+
+            switch (Video1PauseStatus)
+            {
+                case 1:
+                {
+                    Video1PauseStatus = 0;
+                    Me1.LoadedBehavior = MediaState.Play;
+                    btnPause1.Content = "Pause";
+                    
+                }
+                break;
+
+                case 0:
+                {
+
+                    Video1PauseStatus = 1;
+                    Me1.LoadedBehavior = MediaState.Pause;
+                    btnPause1.Content = "Resume";
+                
+                }
+
+                    break;
+
+                default :
+                    break;
+            
+            }
+
+          
             
         }
 
@@ -318,21 +384,22 @@ namespace VideoCompare
 
         private void EnableStart_V1_Checked(object sender, RoutedEventArgs e)
         {
-            if(EnableStart_V1.IsChecked == true)
+           /* if(EnableStart_V1.IsChecked == true)
             {
                 StartSec1.IsEnabled = true;
               
             }
             else
             {
+            */
                 /* Do nothing*/             
                
-            }
+            //}
         }
 
         private void EnableStart_V1_Unchecked(object sender, RoutedEventArgs e)
         {
-            BrushConverter bc = new BrushConverter();
+           /* BrushConverter bc = new BrushConverter();
             Brush brush = (Brush)bc.ConvertFrom("#FFFFFF");
             brush.Freeze();
             if(EnableStart_V1.IsChecked == false)
@@ -342,8 +409,9 @@ namespace VideoCompare
             }
             else
             {
-                /* Do mothing */
+               
             }
+            */
 
         }
 
@@ -468,6 +536,39 @@ namespace VideoCompare
         private void Slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             Slider1_Value.Text = TimeSpan.FromSeconds(Slider1.Value).ToString(@"hh\:mm\:ss\:ff");
+
+          
+
+            if (OptionMenuWindow.View_1_EnableLoop.IsChecked == true)
+            {
+
+                EndValue1 = Convert.ToInt16(OptionMenuWindow.ListBox1.Items[1].ToString());
+
+                Me1.Position = TimeSpan.FromSeconds(Convert.ToInt32(Double.Parse(OptionMenuWindow.ListBox1.Items[0].ToString())));
+
+
+                if (Slider1.Value > EndValue1)
+                {
+                    /* Pause the video */
+                    Me1.LoadedBehavior = MediaState.Pause;
+
+                    /* Set the start position */
+                    Me1.Position = TimeSpan.FromSeconds(Convert.ToInt32(OptionMenuWindow.ListBox1.Items[0].ToString()));
+
+                    /* Resume the video */
+                    Me1.LoadedBehavior = MediaState.Play;
+
+                }
+                else
+                { 
+                /* Do nothing */
+                
+                }
+
+
+            }
+
+         
         }
 
         private void AddElement1_Click(object sender, RoutedEventArgs e)
@@ -811,6 +912,12 @@ namespace VideoCompare
             DrawPanelWindow.Show();
         }
 
+        private void OptionMenu_Click(object sender, RoutedEventArgs e)
+        {
+
+            OptionMenuWindow.Show();
+        }
+
         private void Test_Copy_Click(object sender, RoutedEventArgs e)
         {
            // foreach(Line ui in DrawingBoard.Children)
@@ -928,6 +1035,31 @@ namespace VideoCompare
             {
 
             }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Point ellipse = new Point(80, 80);
+            Me1.Clip = new EllipseGeometry(ellipse, 30, 30);
+            Me1.ClipToBounds = true;
+            Me1.Stretch = Stretch.UniformToFill;
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ZoomControlWindow.Show();
+        }
+
+        private void btnOptions_Click(object sender, RoutedEventArgs e)
+        {
+            OptionMenuWindow.Show();
+        }
+
+        private void Me1_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            OptionMenuWindow.ListBox1.Items.Add(Slider1.Value);
+
         }
     }
 }

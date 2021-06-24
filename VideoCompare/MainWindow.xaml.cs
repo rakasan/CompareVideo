@@ -676,5 +676,36 @@ namespace VideoCompare
         {
             Me2.Volume = 0;
         }
+
+        private void Test_Click(object sender, RoutedEventArgs e)
+        {
+           Line myLine = new Line();
+            myLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+            myLine.X1 = 1;
+            myLine.X2 = 50;
+            myLine.Y1 = 1;
+            myLine.Y2 = 50;
+            myLine.HorizontalAlignment = HorizontalAlignment.Left;
+            myLine.VerticalAlignment = VerticalAlignment.Center;
+            myLine.StrokeThickness = 2;
+            DrawingBoard.Children.Add(myLine);
+        }
+
+        private void AppRestart(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.Application.Restart();
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        private void AppShutdown(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        private void OpenDraw(object sender, RoutedEventArgs e)
+        {
+            var DrawPanelWindow = new DrawPanel();
+            DrawPanelWindow.Show();
+        }
     }
 }

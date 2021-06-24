@@ -2,12 +2,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Name="Form" x:Class="VideoCompare.MainWindow"
-        Title="MainWindow" Height="768" Width="1366" Background="#FF34495E">
+        Title="MainWindow" Height="768" Width="1372" Background="#FF34495E">
     <Grid x:Name="LayoutRoot" HorizontalAlignment="Left" Width="1187">
-        <Rectangle HorizontalAlignment="Left" Height="408" Margin="10,11,0,0" Stroke="Black" VerticalAlignment="Top" Width="652"/>
-        <Rectangle HorizontalAlignment="Left" Height="408" Margin="700,11,-165,0" Stroke="Black" VerticalAlignment="Top" Width="652"/>
-        <MediaElement x:Name="Me1" HorizontalAlignment="Left" Height="408" Margin="10,10,0,0" VerticalAlignment="Top" Width="650" OpacityMask="#FFECF0F1" MouseDown="Me1_MouseDown" MouseLeftButtonUp="Me1_MouseLeftButtonUp"/>
-        <MediaElement x:Name="Me2" HorizontalAlignment="Left" Height="408" Margin="699,10,-162,0" VerticalAlignment="Top" Width="650" OpacityMask="#FFECF0F1" MouseLeftButtonDown="Me2_MouseLeftButtonDown"/>
+        <Rectangle HorizontalAlignment="Left" Height="408" Margin="10,29,0,0" Stroke="Black" VerticalAlignment="Top" Width="652"/>
+        <Rectangle HorizontalAlignment="Left" Height="408" Margin="700,26,-165,0" Stroke="Black" VerticalAlignment="Top" Width="652"/>
+        <MediaElement x:Name="Me1" HorizontalAlignment="Left" Height="408" Margin="10,29,0,0" VerticalAlignment="Top" Width="650" OpacityMask="#FFECF0F1" MouseDown="Me1_MouseDown" MouseLeftButtonUp="Me1_MouseLeftButtonUp"/>
+        <MediaElement x:Name="Me2" HorizontalAlignment="Left" Height="408" Margin="699,29,-162,0" VerticalAlignment="Top" Width="650" OpacityMask="#FFECF0F1" MouseLeftButtonDown="Me2_MouseLeftButtonDown"/>
         <Button x:Name="btnLoad1" Content="Load" HorizontalAlignment="Left" Margin="10,502,0,0" VerticalAlignment="Top" Width="59" Click="btnLoad1_Click"  Background="#FF34495E" BorderBrush="#FFECF0F1" FontFamily="Monotype Corsiva" FontSize="14" Padding="1,1,1,-1" Foreground="#FFECF0F1"/>
         <Button x:Name="BtnSync" Content="Play sync" HorizontalAlignment="Left" Margin="595,670,0,0" VerticalAlignment="Top" Width="75" Click="BtnSync_Click"  Background="#FF34495E" BorderBrush="#FFECF0F1" FontFamily="Monotype Corsiva" FontSize="14" Padding="1,1,1,-1" Foreground="#FFECF0F1"/>
         <Button x:Name="BtnEndlessLoop_Play" Content="Play Endless" HorizontalAlignment="Left" Margin="700,670,0,0" VerticalAlignment="Top" Width="75"  Background="#FF34495E" BorderBrush="#FFECF0F1" FontFamily="Monotype Corsiva" FontSize="14" Padding="1,1,1,-1" Foreground="#FFECF0F1" Click="BtnEndlessLoop_Play_Click"/>
@@ -43,15 +43,36 @@
         <Button x:Name="AddElement2" Content="Add time" HorizontalAlignment="Left" Margin="851,502,0,0" VerticalAlignment="Top" Width="75"  Background="#FF34495E" BorderBrush="#FFECF0F1" FontFamily="Monotype Corsiva" FontSize="14" Padding="1,1,1,-1" Foreground="#FFECF0F1" Click="AddElement2_Click"/>
         <Button x:Name="ClearAll2" Content="Clear all" HorizontalAlignment="Left" Margin="851,620,0,0" VerticalAlignment="Top" Width="75"  Background="#FF34495E" BorderBrush="#FFECF0F1" FontFamily="Monotype Corsiva" FontSize="14" Padding="1,1,1,-1" Foreground="#FFECF0F1" Click="ClearAll2_Click" />
         <Button x:Name="DeleteTime1" Content="Delete Time" HorizontalAlignment="Left" Margin="851,570,0,0" VerticalAlignment="Top" Width="75"  Background="#FF34495E" BorderBrush="#FFECF0F1" FontFamily="Monotype Corsiva" FontSize="14" Padding="1,1,1,-1" Foreground="#FFECF0F1" Click="DeleteTime_Copy_Click" />
-        <Button x:Name="Helpbtn" Content="Help" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="1279,716,-167,0"  Background="#FF34495E" BorderBrush="#FFECF0F1" FontFamily="Monotype Corsiva" FontSize="14" Padding="1,1,1,-1" Foreground="#FFECF0F1"
-                />
         <Button x:Name="BtnSync_Pause" Content="Pause sync" HorizontalAlignment="Left" Margin="515,670,0,0" VerticalAlignment="Top" Width="75"  Background="#FF34495E" BorderBrush="#FFECF0F1" FontFamily="Monotype Corsiva" FontSize="14" Padding="1,1,1,-1" Foreground="#FFECF0F1" Click="BtnSync_Pause_Click"/>
         <TextBox x:Name="PlaySpeed" HorizontalAlignment="Left" Height="23" Margin="700,702,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
         <Label Content="Playback speed" HorizontalAlignment="Left" Margin="585,701,0,0" VerticalAlignment="Top" FontFamily="Monotype Corsiva" FontSize="14" Foreground="#FFECF0F1"/>
-    
+
         <CheckBox x:Name="Me2Mute" Content="Mute" HorizontalAlignment="Left" Margin="1295,466,-155,0" VerticalAlignment="Top" FontFamily="Monotype Corsiva" FontSize="14" Foreground="#FFECF0F1" Unchecked="Me2Mute_Unchecked" Checked="Me2Mute_Checked" />
         <CheckBox x:Name="Me1Mute" Content="Mute" HorizontalAlignment="Left" Margin="10,471,0,0" VerticalAlignment="Top" FontFamily="Monotype Corsiva" FontSize="14" Foreground="#FFECF0F1" Checked="Me1Mute_Checked" Unchecked="Me1Mute_Unchecked" />
-
+        <Button x:Name="Test" Content="Button" HorizontalAlignment="Left" Margin="302,605,0,0" VerticalAlignment="Top" Width="75" Click="Test_Click"/>
+        <Canvas x:Name="DrawingBoard" HorizontalAlignment="Left" Height="408" Margin="10,25,0,0" VerticalAlignment="Top" Width="650"/>
+        <Menu HorizontalAlignment="Left" Height="19" Margin="10,6,0,0" VerticalAlignment="Top" Width="36" Background="#FF34495E" BorderBrush="#FF34495E">
+            <MenuItem Header="_File" Background="#FF34495E" FontFamily="Monotype Corsiva" FontSize="14" Foreground="#FFE6E5E5" BorderBrush="#FF34495E" BorderThickness="0,0,0,1">
+                <MenuItem Header="_New ..." Background="#FF34495E" BorderThickness="0" Click="AppRestart"/>
+                <MenuItem Header="_Open ..." Background="#FF34495E" BorderThickness="0"/>
+                <MenuItem Header="_Save" Background="#FF34495E" BorderThickness="0" />
+                <MenuItem Header="_Exit" Background="#FF34495E" BorderThickness="0" Click="AppShutdown"/>
+            </MenuItem>
+        </Menu>
+        <Menu HorizontalAlignment="Left" Height="19" Margin="44,5,0,0" VerticalAlignment="Top" Width="50" Background="#FF34495E" BorderBrush="#FF34495E">
+            <MenuItem Header="_Options" Background="#FF34495E" FontFamily="Monotype Corsiva" FontSize="14" Foreground="#FFE6E5E5" BorderBrush="#FF34495E" BorderThickness="0,0,0,1" Width="58">
+                <MenuItem Header="_DrawPanel" Background="#FF34495E" BorderThickness="0" Click="OpenDraw"/>
+                <MenuItem Header="_NoteBoard" Background="#FF34495E" BorderThickness="0"/>
+                <MenuItem Header="_ReportBoard" Background="#FF34495E" BorderThickness="0" />
+   
+            </MenuItem>
+        </Menu>
+        <Menu HorizontalAlignment="Left" Height="19" Margin="100,6,0,0" VerticalAlignment="Top" Width="36" Background="#FF34495E" BorderBrush="#FF34495E">
+            <MenuItem Header="_Help" Background="#FF34495E" FontFamily="Monotype Corsiva" FontSize="14" Foreground="#FFE6E5E5" BorderBrush="#FF34495E" BorderThickness="0,0,0,1">
+                <MenuItem Header="_Information" Background="#FF34495E" BorderThickness="0"/>
+                <MenuItem Header="_About" Background="#FF34495E" BorderThickness="0"/>
+            </MenuItem>
+        </Menu>
 
 
     </Grid>

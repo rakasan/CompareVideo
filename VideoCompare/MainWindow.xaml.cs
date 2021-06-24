@@ -38,6 +38,9 @@ namespace VideoCompare
         int counter = 0;
         bool EndlessSync = false;
         bool SyncLoop = false;
+
+        bool Video1Load = false;
+        bool Video2Load = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -152,11 +155,16 @@ namespace VideoCompare
                 Me1.Source = new Uri(ofd.FileName);
                
             }
+            btnPlay1.IsEnabled = true;
+            btnPause1.IsEnabled = true;
+
+            Video1Load = true;
             
         }
 
         private void btnPlay1_Click(object sender, RoutedEventArgs e)
         {
+          
             if (EnableStart_V1.IsChecked == true)
             {
                 Me1.Position = TimeSpan.FromSeconds(Convert.ToInt32(StartSec1.Text));
@@ -187,6 +195,11 @@ namespace VideoCompare
                 Me2.Source = new Uri(ofd.FileName);
 
             }
+
+            btnPlay2.IsEnabled = true;
+            btnPause2.IsEnabled = true;
+
+            Video2Load = true;
         }
 
         private void btnPlay2_Click(object sender, RoutedEventArgs e)
@@ -248,45 +261,52 @@ namespace VideoCompare
 
         private void BtnSync_Click(object sender, RoutedEventArgs e)
         {
-            if((ListBox1.Items.Count  == 0) && (ListBox2.Items.Count == 0))
+
+            if ((Video1Load == true) && (Video2Load == true))
             {
-                Me1.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
-                Me2.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
+                if ((ListBox1.Items.Count == 0) && (ListBox2.Items.Count == 0))
+                {
+                    Me1.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
+                    Me2.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
 
-                Me1.Play();
-                Me2.Play();
-            }
-            else if(( ListBox1.Items.Count % 2 == 0) && (ListBox2.Items.Count % 2 == 0))
-            {
-                startValue1 = Convert.ToInt16(ListBox1.Items[0].ToString());
-                startValue2 = Convert.ToInt16(ListBox2.Items[0].ToString());
+                    Me1.Play();
+                    Me2.Play();
+                }
+                else if ((ListBox1.Items.Count % 2 == 0) && (ListBox2.Items.Count % 2 == 0))
+                {
+                    startValue1 = Convert.ToInt16(ListBox1.Items[0].ToString());
+                    startValue2 = Convert.ToInt16(ListBox2.Items[0].ToString());
 
-                 EndValue1 = Convert.ToInt16(ListBox1.Items[ListBox1.Items.Count - 1].ToString());
-                 EndValue2 = Convert.ToInt16(ListBox1.Items[ListBox2.Items.Count - 1].ToString());
+                    EndValue1 = Convert.ToInt16(ListBox1.Items[ListBox1.Items.Count - 1].ToString());
+                    EndValue2 = Convert.ToInt16(ListBox1.Items[ListBox2.Items.Count - 1].ToString());
 
-                Me1.Position = TimeSpan.FromSeconds(Convert.ToInt32(startValue1));
-                Me2.Position = TimeSpan.FromSeconds(Convert.ToInt32(startValue2));
+                    Me1.Position = TimeSpan.FromSeconds(Convert.ToInt32(startValue1));
+                    Me2.Position = TimeSpan.FromSeconds(Convert.ToInt32(startValue2));
 
-                Me1.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
-                Me2.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
+                    Me1.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
+                    Me2.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
 
-                TimeScaler = Convert.ToInt16(1 / Convert.ToDouble(PlaySpeed.Text));
-                SyncLoop = true;
+                    TimeScaler = Convert.ToInt16(1 / Convert.ToDouble(PlaySpeed.Text));
+                    SyncLoop = true;
 
-                Me1.Play();
-                Me2.Play();
+                    Me1.Play();
+                    Me2.Play();
 
 
 
-                //MessageBox.Show(startValue1 + " " + EndValue1 + " " + startValue2 + " " + EndValue2);
+                    //MessageBox.Show(startValue1 + " " + EndValue1 + " " + startValue2 + " " + EndValue2);
+                }
+                else
+                {
+                    MessageBox.Show("A list box has an uneven number of values");
+                }
+
+
             }
             else
             {
-                MessageBox.Show("A list box has an uneven number of values");
+                MessageBox.Show("Please load both videos");
             }
-
-         
-
         }
 
         private void EnableStart_V1_Checked(object sender, RoutedEventArgs e)
@@ -433,6 +453,7 @@ namespace VideoCompare
                 Me2.Width = System.Windows.SystemParameters.PrimaryScreenHeight;
                 Me2.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
 
+          
                 fullscreen = true;
 
             }
@@ -511,100 +532,149 @@ namespace VideoCompare
 
         private void BtnSync_Pause_Click(object sender, RoutedEventArgs e)
         {
-            SyncLoop = false;
 
-            Me1.Pause();
-            Me2.Pause();
+            if ((Video1Load == true) && (Video2Load == true))
+            {
+                SyncLoop = false;
+
+                Me1.Pause();
+                Me2.Pause();
+            }
+            else
+            {
+                MessageBox.Show("Pease load both videos");
+            }
         }
 
         private void BtnEndlessLoop_Play_Click(object sender, RoutedEventArgs e)
         {
-            if((SyncV1.IsChecked == true) && (SyncV2.IsChecked == true)){
-
-                 if ((ListBox1.Items.Count == 0) && (ListBox2.Items.Count == 0))
-             {
-                 Me1.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
-                 Me2.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
-
-                 Me1.Play();
-                 Me2.Play();
-             }
-             else if ((ListBox1.Items.Count % 2 == 0) && (ListBox2.Items.Count % 2 == 0))
-             {
-                 startValue1 = Convert.ToInt16(ListBox1.Items[0].ToString());
-                 startValue2 = Convert.ToInt16(ListBox2.Items[0].ToString());
-
-                 EndValue1 = Convert.ToInt16(ListBox1.Items[ListBox1.Items.Count - 1].ToString());
-                 EndValue2 = Convert.ToInt16(ListBox1.Items[ListBox2.Items.Count - 1].ToString());
-
-                 Me1.Position = TimeSpan.FromSeconds(Convert.ToInt32(startValue1));
-                 Me2.Position = TimeSpan.FromSeconds(Convert.ToInt32(startValue2));
-
-                 Me1.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
-                 Me2.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
-
-                 TimeScaler = Convert.ToInt16(1 / Convert.ToDouble(PlaySpeed.Text));
-                 EndlessSync = true;
-                 Me1.Play();
-                 Me2.Play();
-                 
-             }
-             else
-             {
-                 MessageBox.Show("A list box has an uneven number of values");
-             }
-            }
-            else if (SyncV1.IsChecked == true)
+            if ((Video1Load == true) && (Video2Load == true))
             {
 
-                startValue1 = Convert.ToInt16(ListBox1.Items[0].ToString());
-                EndValue1 = Convert.ToInt16(ListBox1.Items[ListBox1.Items.Count - 1].ToString());
-                Me1.Position = TimeSpan.FromSeconds(Convert.ToInt32(startValue1));
-                Me1.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
-                TimeScaler = Convert.ToInt16(1 / Convert.ToDouble(PlaySpeed.Text));
-                EndlessSync = true;
-                Me1.Play();
+                if ((SyncV1.IsChecked == true) && (SyncV2.IsChecked == true))
+                {
 
-            }
-            else if( SyncV2.IsChecked == true)
-            {
-                startValue2 = Convert.ToInt16(ListBox2.Items[0].ToString());
-                EndValue2 = Convert.ToInt16(ListBox2.Items[ListBox2.Items.Count - 1].ToString());
-                Me2.Position = TimeSpan.FromSeconds(Convert.ToInt32(startValue2));
-                Me2.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
-                TimeScaler = Convert.ToInt16(1 / Convert.ToDouble(PlaySpeed.Text));
-                EndlessSync = true;
-                Me2.Play();
+                    if ((ListBox1.Items.Count == 0) && (ListBox2.Items.Count == 0))
+                    {
+                        Me1.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
+                        Me2.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
+
+                        Me1.Play();
+                        Me2.Play();
+                    }
+                    else if ((ListBox1.Items.Count % 2 == 0) && (ListBox2.Items.Count % 2 == 0))
+                    {
+                        startValue1 = Convert.ToInt16(ListBox1.Items[0].ToString());
+                        startValue2 = Convert.ToInt16(ListBox2.Items[0].ToString());
+
+                        EndValue1 = Convert.ToInt16(ListBox1.Items[ListBox1.Items.Count - 1].ToString());
+                        EndValue2 = Convert.ToInt16(ListBox1.Items[ListBox2.Items.Count - 1].ToString());
+
+                        Me1.Position = TimeSpan.FromSeconds(Convert.ToInt32(startValue1));
+                        Me2.Position = TimeSpan.FromSeconds(Convert.ToInt32(startValue2));
+
+                        Me1.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
+                        Me2.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
+
+                        TimeScaler = Convert.ToInt16(1 / Convert.ToDouble(PlaySpeed.Text));
+                        EndlessSync = true;
+                        Me1.Play();
+                        Me2.Play();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("A list box has an uneven number of values");
+                    }
+                }
+                else if (SyncV1.IsChecked == true)
+                {
+
+                    startValue1 = Convert.ToInt16(ListBox1.Items[0].ToString());
+                    EndValue1 = Convert.ToInt16(ListBox1.Items[ListBox1.Items.Count - 1].ToString());
+                    Me1.Position = TimeSpan.FromSeconds(Convert.ToInt32(startValue1));
+                    Me1.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
+                    TimeScaler = Convert.ToInt16(1 / Convert.ToDouble(PlaySpeed.Text));
+                    EndlessSync = true;
+                    Me1.Play();
+
+                }
+                else if (SyncV2.IsChecked == true)
+                {
+                    startValue2 = Convert.ToInt16(ListBox2.Items[0].ToString());
+                    EndValue2 = Convert.ToInt16(ListBox2.Items[ListBox2.Items.Count - 1].ToString());
+                    Me2.Position = TimeSpan.FromSeconds(Convert.ToInt32(startValue2));
+                    Me2.SpeedRatio = Convert.ToDouble(PlaySpeed.Text);
+                    TimeScaler = Convert.ToInt16(1 / Convert.ToDouble(PlaySpeed.Text));
+                    EndlessSync = true;
+                    Me2.Play();
+                }
+                else
+                {
+                    MessageBox.Show("No video was selected");
+                }
+
             }
             else
             {
-                MessageBox.Show("No video was selected");
+                MessageBox.Show("Please load both videos");
             }
-           
-             
         }
 
         private void BtnEndlessLoop_Pause_Click(object sender, RoutedEventArgs e)
         {
+            if ((Video1Load == true) && (Video2Load == true))
+            {
+                if ((SyncV1.IsChecked == true) && (SyncV2.IsChecked == true))
+                {
+                    Me1.Pause();
+                    Me2.Pause();
+                }
+                else if (SyncV1.IsChecked == true)
+                {
+                    Me1.Pause();
+                }
+                else if (SyncV2.IsChecked == true)
+                {
+                    Me2.Pause();
+                }
+                else
+                {
+                    MessageBox.Show("No video was selected");
+                }
 
-            if((SyncV1.IsChecked == true) && (SyncV2.IsChecked == true))
+                EndlessSync = false;
+            }
+            else
             {
-                Me1.Pause();
-                Me2.Pause();
+                MessageBox.Show("Please load both videos");
             }
-            else if(SyncV1.IsChecked == true)
-            {
-                Me1.Pause();
-            }
-            else if(SyncV2.IsChecked == true)
-            {
-                Me2.Pause();
-            }
-            else{
-                MessageBox.Show("No video was selected");
-            }
-         
-            EndlessSync = false;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Me1Mute_Checked(object sender, RoutedEventArgs e)
+        {
+            Me1.Volume = 0;
+        }
+
+        private void Me1Mute_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Me1.Volume = 100;
+        }
+
+        private void Me2Mute_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Me2.Volume = 100;
+                 
+        }
+
+        private void Me2Mute_Checked(object sender, RoutedEventArgs e)
+        {
+            Me2.Volume = 0;
         }
     }
 }

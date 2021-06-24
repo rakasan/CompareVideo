@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 using Xceed.Wpf.Toolkit.Zoombox;
 
 
+
 namespace VideoCompare
 {
     /// <summary>
@@ -26,6 +27,9 @@ namespace VideoCompare
     public partial class MainWindow : Window
     {
 
+
+        DrawPanel DrawPanelWindow = new DrawPanel();
+        bool IsDrawing = false;
         public bool fullscreen;
         int TimeScaler = 1;
         DispatcherTimer SyncTime = new DispatcherTimer();
@@ -44,8 +48,6 @@ namespace VideoCompare
 
         bool Video1Load = false;
         bool Video2Load = false;
-
-        DrawPanel DrawPanelWindow = new DrawPanel();
         public MainWindow()
         {
             InitializeComponent();
@@ -350,52 +352,99 @@ namespace VideoCompare
        
         }
 
+        public bool first_click = true;
+        double x = 0;
+        double y = 0;
         private void Me1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            BrushConverter bc = new BrushConverter();
-            Brush brush = (Brush)bc.ConvertFrom("#FF34495E");
-            brush.Freeze();
 
-            if (fullscreen == false)
+
+            if(DrawPanelWindow.PenActive == true)
             {
+                Line myLine = new Line();
+                Point position = Mouse.GetPosition(Me1);
+                myLine.Stroke = DrawPanelWindow.Color;
+                myLine.Name = "Test";
+                if(first_click == true)
+                {
+                    x= position.X;
+                    y = position.Y;
+                    first_click = false;
+                }
+                else
+                {
+                    myLine.X1 = x;
+                    myLine.Y1 = y;
+                    myLine.X2 = position.X;
+                    myLine.Y2 = position.Y;
+                    x = myLine.X2;
+                    y = myLine.Y2;
 
-                LayoutRoot.Children.Remove(Me1);
-
-                this.Background = new SolidColorBrush(Colors.Black);
-
-                this.Content = Me1;
-
-                this.WindowStyle = WindowStyle.None;
-
-             
-
-                Me1.Width = System.Windows.SystemParameters.PrimaryScreenHeight; 
-                Me1.Height = System.Windows.SystemParameters.PrimaryScreenHeight; 
-
-                fullscreen = true;
-
+                    myLine.HorizontalAlignment = HorizontalAlignment.Left;
+                    myLine.VerticalAlignment = VerticalAlignment.Center;
+                    myLine.StrokeThickness = DrawPanelWindow.WidthB;
+                    DrawingBoard.Children.Add(myLine);
+                }
+               
+                              
+                
+               
             }
-
-            else if (fullscreen == true)
+            else if(DrawPanelWindow.LineActive == true)
             {
-
-
-                this.Content = LayoutRoot;
-
-                LayoutRoot.Children.Add(Me1);
-                                
-                this.Background = brush;
-
-                this.WindowStyle = WindowStyle.SingleBorderWindow;
-
-        
-
-                Me1.Width = 650;
-                Me1.Height = 408;
-
-                fullscreen = false;
-
+                IsDrawing = false;
+                MoveFirstClick = true;
+                
             }
+            else
+            {
+                BrushConverter bc = new BrushConverter();
+                Brush brush = (Brush)bc.ConvertFrom("#FF34495E");
+                brush.Freeze();
+
+                if (fullscreen == false)
+                {
+
+                    LayoutRoot.Children.Remove(Me1);
+
+                    this.Background = new SolidColorBrush(Colors.Black);
+
+                    this.Content = Me1;
+
+                    this.WindowStyle = WindowStyle.None;
+
+
+
+                    Me1.Width = System.Windows.SystemParameters.PrimaryScreenHeight;
+                    Me1.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+
+                    fullscreen = true;
+
+                }
+
+                else if (fullscreen == true)
+                {
+
+
+                    this.Content = LayoutRoot;
+
+                    LayoutRoot.Children.Add(Me1);
+
+                    this.Background = brush;
+
+                    this.WindowStyle = WindowStyle.SingleBorderWindow;
+
+
+
+                    Me1.Width = 650;
+                    Me1.Height = 408;
+
+                    fullscreen = false;
+
+                }
+              
+            }
+            
         }
 
         private void Slider1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -436,8 +485,52 @@ namespace VideoCompare
             ListBox1.Items.Clear();
         }
 
+        bool Me2_first_click = true;
+        double Me2_X;
+        double Me2_Y;
         private void Me2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+
+            if(DrawPanelWindow.PenActive == true)
+            {
+                Line myLine = new Line();
+                Point position = Mouse.GetPosition(Me1);
+                myLine.Stroke = DrawPanelWindow.Color;
+                myLine.Name = "Test";
+                if(Me2_first_click == true)
+                {
+                    Me2_X= position.X;
+                    Me2_Y = position.Y;
+                    first_click = false;
+                }
+                else
+                {
+                    myLine.X1 = Me2_X;
+                    myLine.Y1 = Me2_Y;
+                    myLine.X2 = position.X;
+                    myLine.Y2 = position.Y;
+                    Me2_X = myLine.X2;
+                    Me2_Y = myLine.Y2;
+
+                    myLine.HorizontalAlignment = HorizontalAlignment.Left;
+                    myLine.VerticalAlignment = VerticalAlignment.Center;
+                    myLine.StrokeThickness = DrawPanelWindow.WidthB;
+                    DrawingBoard.Children.Add(myLine);
+                }
+               
+                              
+                
+               
+            }
+            else if(DrawPanelWindow.LineActive == true)
+            {
+                IsDrawing = false;
+                MoveFirstClick = true;
+                
+            }
+            else
+            {
+
             BrushConverter bc = new BrushConverter();
             Brush brush = (Brush)bc.ConvertFrom("#FF34495E");
             brush.Freeze();
@@ -481,7 +574,7 @@ namespace VideoCompare
                 Me2.Height = 408;
 
                 fullscreen = false;
-
+            }
             }
         }
 
@@ -737,60 +830,103 @@ namespace VideoCompare
             
         }
 
-        private void Test_Click_1(object sender, RoutedEventArgs e)
+        double MoveX = 0;
+        double MoveY = 0;
+        bool MoveFirstClick = true;
+        private void Me1_MouseMove(object sender, MouseEventArgs e)
         {
-            Line myLine = new Line();
-            myLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
-            //Brush Color = new SolidColorBrush(ColorPick.SelectedColor);
-            //myLine.Stroke = Color;
-            myLine.Name = "Test";
-            myLine.X1 = 1;
-            myLine.X2 = 50;
-            myLine.Y1 = 1;
-            myLine.Y2 = 50;
-            myLine.HorizontalAlignment = HorizontalAlignment.Left;
-            myLine.VerticalAlignment = VerticalAlignment.Center;
-            myLine.StrokeThickness = 6;
-            DrawingBoard.Children.Add(myLine);
+            
+            if (IsDrawing == true)
+            {
+                
+                Line myLine = new Line();
+                Point position = Mouse.GetPosition(Me1);
+
+                myLine.Stroke = DrawPanelWindow.Color;
+                myLine.Name = "Test";
+                if (MoveFirstClick == true)
+                {
+                    MoveX = position.X;
+                    MoveY = position.Y;
+                    MoveFirstClick = false;
+                }
+                else
+                {
+                    myLine.X1 = MoveX;
+                    myLine.Y1 = MoveY;
+                    myLine.X2 = position.X;
+                    myLine.Y2 = position.Y;
+                    MoveX = myLine.X2;
+                    MoveY = myLine.Y2;
+
+                    myLine.HorizontalAlignment = HorizontalAlignment.Left;
+                    myLine.VerticalAlignment = VerticalAlignment.Center;
+                    myLine.StrokeThickness = DrawPanelWindow.WidthB;
+                    DrawingBoard.Children.Add(myLine);
+                }
+            }else
+            {
+
+            }
+        }
+
+        private void Me1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (DrawPanelWindow.LineActive == true)
+            {
+                IsDrawing = true;
+            }
+        }
+
+        private void Me1_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            IsDrawing = false;
+            MoveFirstClick = true;
         }
 
         private void Me1_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if(DrawPanelWindow.PenActive == true)
-            {
-                MessageBox.Show("aici");
-            }
+            IsDrawing = false;
+            MoveFirstClick = true;
         }
 
-        bool first_click = false;
-        private void Me1_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        bool Me2MoveFirstClick = true;
+        double Me2MoveX;
+        double Me2MoveY;
+        private void Me2_MouseMove(object sender, MouseEventArgs e)
         {
-            Line myLine = new Line();
-
-            if (first_click == false)
-            {
-                myLine.X1 = System.Windows.Forms.Control.MousePosition.X;
-                myLine.Y1 = System.Windows.Forms.Cursor.Position;
-
-            }
-
-            if (DrawPanelWindow.PenActive == true)
+            if (IsDrawing == true)
             {
 
+                Line myLine = new Line();
+                Point position = Mouse.GetPosition(Me1);
 
-                
-                myLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
-                //Brush Color = new SolidColorBrush(ColorPick.SelectedColor);
-                //myLine.Stroke = Color;
+                myLine.Stroke = DrawPanelWindow.Color;
                 myLine.Name = "Test";
-                myLine.X1 = 1;
-                myLine.X2 = 50;
-                myLine.Y1 = 1;
-                myLine.Y2 = 50;
-                myLine.HorizontalAlignment = HorizontalAlignment.Left;
-                myLine.VerticalAlignment = VerticalAlignment.Center;
-                myLine.StrokeThickness = 6;
-                DrawingBoard.Children.Add(myLine);
+                if (Me2MoveFirstClick == true)
+                {
+                    Me2MoveX = position.X;
+                    Me2MoveY = position.Y;
+                    MoveFirstClick = false;
+                }
+                else
+                {
+                    myLine.X1 = Me2MoveX;
+                    myLine.Y1 = Me2MoveY;
+                    myLine.X2 = position.X;
+                    myLine.Y2 = position.Y;
+                    Me2MoveX = myLine.X2;
+                    Me2MoveY = myLine.Y2;
+
+                    myLine.HorizontalAlignment = HorizontalAlignment.Left;
+                    myLine.VerticalAlignment = VerticalAlignment.Center;
+                    myLine.StrokeThickness = DrawPanelWindow.WidthB;
+                    DrawingBoard.Children.Add(myLine);
+                }
+            }
+            else
+            {
+
             }
         }
     }

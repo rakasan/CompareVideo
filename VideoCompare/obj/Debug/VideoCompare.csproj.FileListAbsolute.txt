@@ -147,27 +147,26 @@ G:\Proiecte\In dezvoltare\VideoCompare\V10\VideoCompare\obj\Debug\VideoCompare.c
 G:\Proiecte\In dezvoltare\VideoCompare\V10\VideoCompare\obj\Debug\VideoCompare.exe.manifest
 G:\Proiecte\In dezvoltare\VideoCompare\V10\VideoCompare\obj\Debug\VideoCompare.application
 G:\Proiecte\In dezvoltare\VideoCompare\V10\VideoCompare\bin\Debug\Xceed.Wpf.Toolkit.dll
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\bin\Debug\VideoCompare.exe.config
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\Interop.MediaPlayer.dll
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\VideoCompare.csproj.ResolveComReference.cache
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\VideoCompare.exe
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\VideoCompare.pdb
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\bin\Debug\VideoCompare.exe.manifest
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\bin\Debug\VideoCompare.application
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\bin\Debug\VideoCompare.exe
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\bin\Debug\VideoCompare.pdb
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\bin\Debug\Xceed.Wpf.Toolkit.dll
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\VideoCompare.csprojResolveAssemblyReference.cache
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\DrawPanel.baml
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\MainWindow.baml
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\Page1.baml
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\DrawPanel.g.cs
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\MainWindow.g.cs
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\Page1.g.cs
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\App.g.cs
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\VideoCompare_MarkupCompile.cache
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\VideoCompare.g.resources
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\VideoCompare.Properties.Resources.resources
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\VideoCompare.csproj.GenerateResource.Cache
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\VideoCompare.exe.manifest
-G:\Proiecte\In dezvoltare\VideoCompare\V11-2015\VideoCompare\obj\Debug\VideoCompare.application
+D:\V10\VideoCompare\bin\Debug\VideoCompare.exe.config
+D:\V10\VideoCompare\obj\Debug\Interop.MediaPlayer.dll
+D:\V10\VideoCompare\obj\Debug\VideoCompare.csproj.ResolveComReference.cache
+D:\V10\VideoCompare\obj\Debug\VideoCompare.exe
+D:\V10\VideoCompare\obj\Debug\VideoCompare.pdb
+D:\V10\VideoCompare\bin\Debug\VideoCompare.exe.manifest
+D:\V10\VideoCompare\bin\Debug\VideoCompare.application
+D:\V10\VideoCompare\bin\Debug\VideoCompare.exe
+D:\V10\VideoCompare\bin\Debug\VideoCompare.pdb
+D:\V10\VideoCompare\obj\Debug\VideoCompare.csprojResolveAssemblyReference.cache
+D:\V10\VideoCompare\obj\Debug\DrawPanel.baml
+D:\V10\VideoCompare\obj\Debug\MainWindow.baml
+D:\V10\VideoCompare\obj\Debug\Page1.baml
+D:\V10\VideoCompare\obj\Debug\DrawPanel.g.cs
+D:\V10\VideoCompare\obj\Debug\MainWindow.g.cs
+D:\V10\VideoCompare\obj\Debug\Page1.g.cs
+D:\V10\VideoCompare\obj\Debug\App.g.cs
+D:\V10\VideoCompare\obj\Debug\VideoCompare_MarkupCompile.cache
+D:\V10\VideoCompare\obj\Debug\VideoCompare.g.resources
+D:\V10\VideoCompare\obj\Debug\VideoCompare.Properties.Resources.resources
+D:\V10\VideoCompare\obj\Debug\VideoCompare.csproj.GenerateResource.Cache
+D:\V10\VideoCompare\obj\Debug\VideoCompare.exe.manifest
+D:\V10\VideoCompare\obj\Debug\VideoCompare.application

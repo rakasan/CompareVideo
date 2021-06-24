@@ -2,20 +2,17 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="VideoCompare.DrawPanel"
-        Title="DrawPanel" Height="121" Width="488" WindowStyle="ToolWindow">
-    <Grid>
-        <Button HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Width="46" Height="46" Click="Button_Click">
-            <Image Height="31" Source="pencil_1-512.png" Stretch="Fill" Width="31"/>
+        Title="DrawPanel" Height="109" Width="488" WindowStyle="ToolWindow">
+    <Grid Background="#FF34495E">
+        <Button HorizontalAlignment="Left" Margin="15,17,0,0" VerticalAlignment="Top" Width="39" Height="39">
+            <Image Height="31" Source="pencil_1-512.png" Stretch="Fill" Width="31" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         </Button>
-        <Button HorizontalAlignment="Left" Margin="64,17,0,0" VerticalAlignment="Top" Width="46" Height="46">
-            <Image Height="33" Source="Icons8-Ios7-Editing-Line.ico" Stretch="Fill" Width="33"/>
+        <Button HorizontalAlignment="Left" Margin="76,17,0,0" VerticalAlignment="Top" Width="40" Height="39" MouseLeftButtonDown="Button_MouseLeftButtonDown">
+            <Image Height="30" Source="Icons8-Ios7-Editing-Line.ico" Stretch="Fill" Width="30" MouseLeftButtonDown="Image_MouseLeftButtonDown_1" RenderTransformOrigin="1.083,0.393"/>
         </Button>
 
-        <xctk:ColorPicker x:Name="ColorPick" HorizontalAlignment="Left" Margin="193,21,0,0" VerticalAlignment="Top" Height="40" Width="130"/>
-        <TextBox HorizontalAlignment="Left" Height="40" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="40" Margin="137,21,0,0" FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Button HorizontalAlignment="Left" Margin="344,17,0,0" VerticalAlignment="Top" Width="46" Height="46">
-            <Image Height="46" Source="unnamed.png" Stretch="Fill" Width="46"/>
-        </Button>
+        <xctk:ColorPicker x:Name="ColorPick" HorizontalAlignment="Left" Margin="190,22,0,0" VerticalAlignment="Top" Height="28" Width="279" MouseLeftButtonUp="ColorPick_MouseLeftButtonUp"/>
+        <TextBox x:Name="WidthBox" HorizontalAlignment="Left" Height="41" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Margin="130,17,0,0" FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="2"/>
 
     </Grid>
 </Window>

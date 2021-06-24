@@ -4,7 +4,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="VideoCompare.DrawPanel"
         Title="DrawPanel" Height="121" Width="488" WindowStyle="ToolWindow">
     <Grid>
-        <Button HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Width="46" Height="46">
+        <Button HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Width="46" Height="46" Click="Button_Click">
             <Image Height="31" Source="pencil_1-512.png" Stretch="Fill" Width="31"/>
         </Button>
         <Button HorizontalAlignment="Left" Margin="64,17,0,0" VerticalAlignment="Top" Width="46" Height="46">

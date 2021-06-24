@@ -44,6 +44,8 @@ namespace VideoCompare
 
         bool Video1Load = false;
         bool Video2Load = false;
+
+        DrawPanel DrawPanelWindow = new DrawPanel();
         public MainWindow()
         {
             InitializeComponent();
@@ -712,7 +714,7 @@ namespace VideoCompare
 
         private void OpenDraw(object sender, RoutedEventArgs e)
         {
-            var DrawPanelWindow = new DrawPanel();
+            
             DrawPanelWindow.Show();
         }
 
@@ -733,6 +735,63 @@ namespace VideoCompare
             //DrawingBoard.Children.RemoveAt(0);
 
             
+        }
+
+        private void Test_Click_1(object sender, RoutedEventArgs e)
+        {
+            Line myLine = new Line();
+            myLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+            //Brush Color = new SolidColorBrush(ColorPick.SelectedColor);
+            //myLine.Stroke = Color;
+            myLine.Name = "Test";
+            myLine.X1 = 1;
+            myLine.X2 = 50;
+            myLine.Y1 = 1;
+            myLine.Y2 = 50;
+            myLine.HorizontalAlignment = HorizontalAlignment.Left;
+            myLine.VerticalAlignment = VerticalAlignment.Center;
+            myLine.StrokeThickness = 6;
+            DrawingBoard.Children.Add(myLine);
+        }
+
+        private void Me1_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if(DrawPanelWindow.PenActive == true)
+            {
+                MessageBox.Show("aici");
+            }
+        }
+
+        bool first_click = false;
+        private void Me1_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            Line myLine = new Line();
+
+            if (first_click == false)
+            {
+                myLine.X1 = System.Windows.Forms.Control.MousePosition.X;
+                myLine.Y1 = System.Windows.Forms.Cursor.Position;
+
+            }
+
+            if (DrawPanelWindow.PenActive == true)
+            {
+
+
+                
+                myLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+                //Brush Color = new SolidColorBrush(ColorPick.SelectedColor);
+                //myLine.Stroke = Color;
+                myLine.Name = "Test";
+                myLine.X1 = 1;
+                myLine.X2 = 50;
+                myLine.Y1 = 1;
+                myLine.Y2 = 50;
+                myLine.HorizontalAlignment = HorizontalAlignment.Left;
+                myLine.VerticalAlignment = VerticalAlignment.Center;
+                myLine.StrokeThickness = 6;
+                DrawingBoard.Children.Add(myLine);
+            }
         }
     }
 }

@@ -18,9 +18,19 @@ namespace VideoCompare
     /// </summary>
     public partial class DrawPanel : Window
     {
+
+        public bool PenActive = false;
+     
         public DrawPanel()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            PenActive = true;
+
+          
         }
     }
 }

@@ -42,14 +42,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="VideoCompare.exe" size="39424">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="VideoCompare.exe" size="237056">
       <assemblyIdentity name="VideoCompare" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>qETxnYB+5hpJdK97adyorCfmDTs=</dsig:DigestValue>
+        <dsig:DigestValue>OFjxDKf651vhfIRXuUyyAoMXZVk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Xceed.Wpf.Toolkit.dll" size="1005568">
+      <assemblyIdentity name="Xceed.Wpf.Toolkit" version="2.4.0.0" publicKeyToken="3E4669D2F30244F4" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>XN6dSM05DI2msWXT6IpJ9zT0OgI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

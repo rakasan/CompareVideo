@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Microsoft.Win32;
 using System.Windows.Controls.Primitives;
+using Xceed.Wpf.Toolkit.Zoombox;
 
 
 namespace VideoCompare
@@ -32,6 +33,8 @@ namespace VideoCompare
         
         int EndValue1;
         int EndValue2;
+
+        int Line_index;
 
         int startValue1 ;
         int startValue2 ;
@@ -680,15 +683,20 @@ namespace VideoCompare
         private void Test_Click(object sender, RoutedEventArgs e)
         {
            Line myLine = new Line();
-            myLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+            //myLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+            //Brush Color = new SolidColorBrush(ColorPick.SelectedColor);
+           // myLine.Stroke = Color;
+            myLine.Name = "Test";
             myLine.X1 = 1;
             myLine.X2 = 50;
             myLine.Y1 = 1;
             myLine.Y2 = 50;
             myLine.HorizontalAlignment = HorizontalAlignment.Left;
             myLine.VerticalAlignment = VerticalAlignment.Center;
-            myLine.StrokeThickness = 2;
+            myLine.StrokeThickness = 6;
             DrawingBoard.Children.Add(myLine);
+
+            
         }
 
         private void AppRestart(object sender, RoutedEventArgs e)
@@ -706,6 +714,25 @@ namespace VideoCompare
         {
             var DrawPanelWindow = new DrawPanel();
             DrawPanelWindow.Show();
+        }
+
+        private void Test_Copy_Click(object sender, RoutedEventArgs e)
+        {
+           // foreach(Line ui in DrawingBoard.Children)
+           /* UIElement x = null;
+            for (int ite = DrawingBoard.Children.Count - 1; ite >= 0; ite -- )
+            {
+                x = DrawingBoard.Children[ite];
+                if (x. == "Test")
+                {
+                    DrawingBoard.Children.Remove(ui);
+                }
+            }
+            */
+
+            //DrawingBoard.Children.RemoveAt(0);
+
+            
         }
     }
 }

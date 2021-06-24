@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tab_settings.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("unnamed.png")]
 
 

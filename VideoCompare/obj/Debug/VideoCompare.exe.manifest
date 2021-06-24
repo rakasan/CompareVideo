@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="VideoCompare.exe" size="28160">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="VideoCompare.exe" size="34304">
       <assemblyIdentity name="VideoCompare" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>yFHvQ5qnGWptAh4BMj6fJ1DD2ok=</dsig:DigestValue>
+        <dsig:DigestValue>KRaI1zmOJIi6S1VnR072VVKuZVk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
